@@ -7,8 +7,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "User Management System",
-  description: "Manage users intuitively",
+  title: "Primis Admin Dashboard",
+  description: "Manage users and operations from the Primis admin workspace.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -12,15 +12,14 @@ import {
   Paper,
   TextField,
   Typography,
-  alpha,
 } from '@mui/material';
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import Link from 'next/link';
 import { authService } from '@/services/auth.service';
 import { useAuth } from '@/contexts/AuthContext';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function RegisterPage() {
   const { login } = useAuth();
@@ -58,8 +57,8 @@ export default function RegisterPage() {
       const userData = await authService.getMe();
 
       login(token, userData);
-    } catch (err: any) {
-      setError(err.message || 'Registration failed. Please check your details.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Registration failed. Please check your details.');
     } finally {
       setLoading(false);
     }
@@ -97,20 +96,8 @@ export default function RegisterPage() {
             }}
           >
             <Box>
-              <Box
-                sx={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: '16px',
-                  bgcolor: alpha('#2563eb', 0.08),
-                  color: 'primary.main',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  mb: 3,
-                }}
-              >
-                <PersonAddOutlinedIcon />
+              <Box sx={{ mb: 3 }}>
+                <BrandLogo size={52} />
               </Box>
 
               <Typography variant="overline" sx={{ color: 'primary.main', fontWeight: 800 }}>

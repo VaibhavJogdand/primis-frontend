@@ -24,6 +24,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import BrandLogo from '@/components/BrandLogo';
 
 const drawerWidth = 296;
 
@@ -60,7 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { text: 'User Management', icon: <GroupIcon />, path: '/dashboard/users' },
   ];
 
-const drawer = (
+  const drawer = (
     <Box
       sx={{
         display: 'flex',
@@ -80,30 +81,8 @@ const drawer = (
           border: '1px solid rgba(148, 163, 184, 0.16)',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2.5 }}>
-          <Box
-            sx={{
-              width: 42,
-              height: 42,
-              borderRadius: '12px',
-              backgroundColor: alpha('#2563eb', 0.1),
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#2563eb',
-              fontWeight: 900,
-            }}
-          >
-            P
-          </Box>
-          <Box>
-            <Typography variant="h6" sx={{ fontWeight: 800, lineHeight: 1.1 }}>
-              Primis
-            </Typography>
-            <Typography variant="caption" sx={{ opacity: 0.72 }}>
-              Admin Dashboard
-            </Typography>
-          </Box>
+        <Box sx={{ mb: 2.5 }}>
+          <BrandLogo size={42} subtitle="Admin Dashboard" />
         </Box>
 
       </Box>

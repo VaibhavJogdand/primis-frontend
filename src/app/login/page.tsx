@@ -12,15 +12,14 @@ import {
   Paper,
   TextField,
   Typography,
-  alpha,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import Link from 'next/link';
 import { authService } from '@/services/auth.service';
 import { useAuth } from '@/contexts/AuthContext';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -43,8 +42,8 @@ export default function LoginPage() {
       const userData = await authService.getMe();
 
       login(token, userData);
-    } catch (err: any) {
-      setError(err.message || 'Invalid email or password. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Invalid email or password. Please try again.');
       localStorage.removeItem('token');
     } finally {
       setLoading(false);
@@ -83,20 +82,8 @@ export default function LoginPage() {
             }}
           >
             <Box>
-              <Box
-                sx={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: '16px',
-                  bgcolor: alpha('#2563eb', 0.08),
-                  color: 'primary.main',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  mb: 3,
-                }}
-              >
-                <LockOutlinedIcon />
+              <Box sx={{ mb: 3 }}>
+                <BrandLogo size={52} />
               </Box>
 
               <Typography variant="overline" sx={{ color: 'primary.main', fontWeight: 800 }}>
